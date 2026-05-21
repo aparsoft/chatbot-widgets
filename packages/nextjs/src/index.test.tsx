@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import React from 'react';
 
 import AparsoftChatbotNext, { useAparsoftChatbot } from './index';
@@ -23,7 +23,9 @@ describe('AparsoftChatbot (Next.js)', () => {
   it('injects the widget loader script into the DOM', () => {
     render(React.createElement(AparsoftChatbotNext, { apiKey: 'test-key' }));
 
-    const script = document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`) as HTMLScriptElement | null;
+    const script = document.querySelector(
+      `script[src="${WIDGET_SCRIPT_URL}"]`,
+    ) as HTMLScriptElement | null;
     expect(script).not.toBeNull();
     expect(script?.async).toBe(true);
   });
