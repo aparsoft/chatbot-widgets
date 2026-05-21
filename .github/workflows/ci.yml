@@ -14,9 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v4
         with:
@@ -24,6 +22,18 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: TypeScript checks
+        run: |
+          pnpm exec tsc --noEmit --project packages/react/tsconfig.json
+          pnpm exec tsc --noEmit --project packages/nextjs/tsconfig.json
+          pnpm exec tsc --noEmit --project packages/angular/tsconfig.json
+
+      - name: Unit tests
+        run: pnpm test
 
       - name: Verify package.json validity
         run: |
