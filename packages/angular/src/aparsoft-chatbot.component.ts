@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 type WidgetPosition = 'bottom-right' | 'bottom-left';
@@ -36,7 +45,8 @@ declare global {
 
 const WIDGET_SCRIPT_URL = 'https://www.aparsoft.com/static/chatbot-widget/widget.loader.js';
 const READY_EVENT = 'aparsoft-chatbot:ready';
-const DEFAULT_CONFIG_ENDPOINT = 'https://www.aparsoft.com/api/v1/chatbot/public/widget/{apiKey}/config/';
+const DEFAULT_CONFIG_ENDPOINT =
+  'https://www.aparsoft.com/api/v1/chatbot/public/widget/{apiKey}/config/';
 const DEFAULT_WEBSOCKET_URL = 'wss://www.aparsoft.com/ws/client-chatbot/';
 
 @Component({
@@ -97,7 +107,8 @@ export class AparsoftChatbotComponent implements OnInit, OnDestroy {
     };
 
     this.handleReady = (event: Event) => {
-      const controller = (event as CustomEvent).detail?.controller || window.AparsoftChatbot || null;
+      const controller =
+        (event as CustomEvent).detail?.controller || window.AparsoftChatbot || null;
       if (controller) {
         this.ready.emit(controller);
       }
@@ -106,7 +117,7 @@ export class AparsoftChatbotComponent implements OnInit, OnDestroy {
     window.addEventListener(READY_EVENT, this.handleReady);
 
     const existingScript = document.querySelector(
-      'script[src="' + WIDGET_SCRIPT_URL + '"][data-aparsoft-chatbot]'
+      'script[src="' + WIDGET_SCRIPT_URL + '"][data-aparsoft-chatbot]',
     ) as HTMLScriptElement | null;
     if (existingScript) {
       existingScript.remove();
@@ -121,8 +132,10 @@ export class AparsoftChatbotComponent implements OnInit, OnDestroy {
     this.loaderScript.dataset.aparsoftChatbot = 'true';
     this.loaderScript.dataset.apiKey = config.apiKey;
     if (config.position) this.loaderScript.dataset.position = config.position;
-    if (typeof config.showBranding === 'boolean') this.loaderScript.dataset.showBranding = String(config.showBranding);
-    if (config.autoOpenDelayMs && config.autoOpenDelayMs > 0) this.loaderScript.dataset.autoOpenDelayMs = String(config.autoOpenDelayMs);
+    if (typeof config.showBranding === 'boolean')
+      this.loaderScript.dataset.showBranding = String(config.showBranding);
+    if (config.autoOpenDelayMs && config.autoOpenDelayMs > 0)
+      this.loaderScript.dataset.autoOpenDelayMs = String(config.autoOpenDelayMs);
     if (config.configEndpoint) this.loaderScript.dataset.configEndpoint = config.configEndpoint;
     if (config.websocketUrl) this.loaderScript.dataset.websocketUrl = config.websocketUrl;
     if (config.primaryColor) this.loaderScript.dataset.primaryColor = config.primaryColor;
@@ -134,7 +147,9 @@ export class AparsoftChatbotComponent implements OnInit, OnDestroy {
     document.body.appendChild(this.loaderScript);
 
     if (window.AparsoftChatbot?.isReady) {
-      this.handleReady(new CustomEvent(READY_EVENT, { detail: { controller: window.AparsoftChatbot } }));
+      this.handleReady(
+        new CustomEvent(READY_EVENT, { detail: { controller: window.AparsoftChatbot } }),
+      );
     }
   }
 
