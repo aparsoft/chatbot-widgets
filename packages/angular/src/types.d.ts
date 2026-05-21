@@ -8,8 +8,12 @@ declare module '@angular/core' {
     emit(value: T): void;
     subscribe(fn: (value: T) => void): void;
   }
-  export interface OnInit { ngOnInit(): void; }
-  export interface OnDestroy { ngOnDestroy(): void; }
+  export interface OnInit {
+    ngOnInit(): void;
+  }
+  export interface OnDestroy {
+    ngOnDestroy(): void;
+  }
 }
 
 declare module '@angular/common' {
