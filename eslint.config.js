@@ -34,12 +34,28 @@ export default tseslint.config(
     },
   },
   {
+    files: ['**/*.test.{js,ts,tsx}', 'test-stubs/**'],
+    languageOptions: {
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        CustomEvent: 'readonly',
+        HTMLElement: 'readonly',
+        HTMLScriptElement: 'readonly',
+      },
+    },
+    rules: {
+      'no-undef': 'off',
+    },
+  },
+  {
     ignores: [
       'node_modules/',
       'dist/',
       'wordpress/',
       'local_folder/',
       '*.config.js',
+      '*.config.ts',
     ],
   },
 );
