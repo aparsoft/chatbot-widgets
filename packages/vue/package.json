@@ -1,29 +1,39 @@
 {
   "name": "@aparsoft/chatbot-vue",
   "version": "1.0.0",
-  "description": "Vue component for the Aparsoft AI Chatbot Widget (Vue 2.7+ and Vue 3)",
+  "description": "Vue component for the Aparsoft AI Chatbot Widget -- works with Vue 2.7+ and Vue 3, SSR-safe.",
   "main": "src/AparsoftChatbot.vue",
   "module": "src/AparsoftChatbot.vue",
+  "types": "src/AparsoftChatbot.vue",
   "exports": {
     ".": {
       "import": "./src/AparsoftChatbot.vue",
       "require": "./src/AparsoftChatbot.vue",
+      "types": "./src/AparsoftChatbot.vue",
       "default": "./src/AparsoftChatbot.vue"
     }
   },
+  "files": [
+    "src/AparsoftChatbot.vue",
+    "README.md"
+  ],
+  "sideEffects": false,
   "keywords": [
+    "aparsoft",
     "chatbot",
     "ai-chatbot",
-    "vue",
-    "vue3",
-    "vue2",
     "vue-chatbot",
-    "widget",
-    "aparsoft",
-    "rag",
-    "ai"
+    "vue-chat-widget",
+    "vue3-chatbot",
+    "vue-component",
+    "chat-widget",
+    "embeddable-chatbot",
+    "rag-chatbot",
+    "llm-chatbot",
+    "customer-support",
+    "live-chat"
   ],
-  "author": "Aparsoft Private Limited",
+  "author": "Aparsoft Private Limited <hello@aparsoft.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -33,8 +43,5 @@
   "homepage": "https://chatbot.aparsoft.com",
   "peerDependencies": {
     "vue": ">=2.7.0 || >=3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "vue": { "optional": false }
   }
 }
