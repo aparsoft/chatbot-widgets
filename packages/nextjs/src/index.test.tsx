@@ -41,7 +41,9 @@ describe('AparsoftChatbot (Next.js)', () => {
       }),
     );
 
-    const script = document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`) as HTMLScriptElement;
+    const script = document.querySelector(
+      `script[src="${WIDGET_SCRIPT_URL}"]`,
+    ) as HTMLScriptElement;
     expect(script?.dataset.aparsoftChatbot).toBe('true');
     expect(script?.dataset.apiKey).toBe('test-key');
     expect(script?.dataset.position).toBe('bottom-left');
@@ -59,9 +61,7 @@ describe('AparsoftChatbot (Next.js)', () => {
   });
 
   it('cleans up on unmount', () => {
-    const { unmount } = render(
-      React.createElement(AparsoftChatbotNext, { apiKey: 'test-key' }),
-    );
+    const { unmount } = render(React.createElement(AparsoftChatbotNext, { apiKey: 'test-key' }));
     expect(document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`)).not.toBeNull();
     unmount();
     expect(document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`)).toBeNull();
@@ -118,7 +118,7 @@ describe('useAparsoftChatbot (Next.js)', () => {
 });
 
 function renderHook<T>(hook: () => T) {
-  let result: { current: T } = { current: undefined as unknown as T };
+  const result: { current: T } = { current: undefined as unknown as T };
   function TestComponent() {
     result.current = hook();
     return null;
